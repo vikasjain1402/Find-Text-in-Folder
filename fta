@@ -1,0 +1,39 @@
+#!/usr/bin/python3
+import os
+import sys
+def find_text_in_file_in_path(path,text):
+
+    os.chdir(path)
+    for i,j,k in os.walk(path):
+        for l in k:
+                filepath=os.path.join(i,l)
+                try:
+                    f=open(filepath,"r",)
+                  
+                    r=f.readlines()
+                except:
+                    pass
+                else:
+                    for m in r:
+                        if text in m:
+                            print(i," $$ ",l)
+                            inp=input("need more search Y/N ")
+                            if inp=='N' or inp=='n'  :
+                                print ("Thanks!!")
+                                return None
+                            else:
+                                break
+                
+
+if __name__=="__main__":
+    text=input("Enter file text or phrase you want to Search : ")
+    while True:
+        #path=input('Enter Path e.g /Search/this/folder : ')
+        path=sys.argv[1]
+        if os.path.exists(path)==True:
+            find_text_in_file_in_path(path,text)
+            print("bye")
+            break
+        
+        
+
